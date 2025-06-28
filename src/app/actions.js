@@ -2,7 +2,7 @@
 import { createClient } from '@/utils/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { redirect } from "next/navigation";
-import { submitTask, updateTask ,deleteTaskFromDB, addNewBoard, updateBoard, deleteBoardFromDB} from './services/server/users';
+import { submitTask, updateTask ,deleteTaskFromDB, addNewBoard, updateBoard, deleteBoardFromDB,signOutUser} from './services/server/users';
 import { signUpUser } from './services/server/users';
 
 export async function addTask(formData){
@@ -77,8 +77,7 @@ export async function signUp(formData){
     }
 }
 export async function signOut(){
-    const supabase = await createClient()
-    const {error} = await supabase.auth.signOut()
+    const {error}=signOutUser()
     if(error)
         throw new Error(error.message);
     revalidatePath('/')

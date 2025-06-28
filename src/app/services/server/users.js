@@ -6,7 +6,6 @@ export async function getFullUser(){
         const { data } = await supabase.auth.getUser();
         if(data.user){
             const {id} = data.user;
-            
             let { data: userData, error } = await supabase
                 .from('users')
                 .select("*")
@@ -36,6 +35,13 @@ export async function signUpUser(user){
     
     return {error};
 
+}
+
+export async function signOutUser(){
+    const supabase = await createClient()
+    const {error} = await supabase.auth.signOut();
+    user = null;
+    return {error}
 }
 export async function getUserTasks(id){
     const supabase = await createClient();
