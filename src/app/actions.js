@@ -43,7 +43,7 @@ export async function editBoard(formData){
     const {board_Id}=formData
     const {error} = await updateBoard(formData);
     if(error){
-       throw new Error(error.message)
+        throw new Error(error.message)
     }
     revalidatePath(`/board/${board_Id}`)
     revalidatePath('/')
@@ -70,11 +70,7 @@ export async function login(formData){
 }
 export async function signUp(formData){
     const {error} = await signUpUser(formData)
-    if(error)
-    {
-        console.log(error);
-        throw new Error(error.message);
-    }
+    return {error};
 }
 export async function signOut(){
     const {error}=signOutUser()

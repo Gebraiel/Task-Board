@@ -30,12 +30,14 @@ export default function SignupForm() {
     const passwordConfirmValue = watch("passwordConfirm");
     const onSubmit = async (data)=>{
         console.log(data);
-        try{
-            await signUp(data)
+        
+        const {error}=await signUp(data)
+            
+        if(error){
+            toast.error(error.message)
+        }else{
             toast.success("User registered successfully",{autoClose: 1000,
             onClose: () => router.push("/auth/login"),});
-        }catch(e){
-            toast.error(e.message)
         }
 
     }
