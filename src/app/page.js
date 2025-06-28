@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation'
 import { getBoards, getFullUser } from "@/src/app/services/server/users";
 import Board from './components/Board';
 import AddBoardButton from './components/AddBoardButton';
+import { toast } from 'react-toastify';
 
 export default async function Home() {
   const fullUser = await getFullUser();
@@ -11,7 +12,11 @@ export default async function Home() {
   }
   
   console.log(fullUser)
-  const boards = await getBoards(fullUser.id);
+  const {boards,error} = await getBoards(fullUser.id);
+  if(error){
+    toast.error(error.message)
+    
+  }
   console.log(boards);
   console.log("Full User : ",fullUser)
   return (

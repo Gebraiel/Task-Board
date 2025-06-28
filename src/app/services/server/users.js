@@ -1,26 +1,24 @@
 import { createClient } from '@/utils/supabase/server';
 let user = null;
 export async function getFullUser(){
-    if(!user){
-        const supabase =  await createClient();
-        const { data } = await supabase.auth.getUser();
-        if(data.user){
-            const {id} = data.user;
-            let { data: userData, error } = await supabase
-                .from('users')
-                .select("*")
-                .eq('auth_id', id).single();
-            if(error){
-                console.log(error);
-            }
-            user = userData;
-            console.log(userData);
-            return userData;
+    
+    const supabase =  await createClient();
+    const { data } = await supabase.auth.getUser();
+    if(data.user){
+        const {id} = data.user;
+        let { data: userData, error } = await supabase
+            .from('users')
+            .select("*")
+            .eq('auth_id', id).single();
+        if(error){
+            console.log(error);
         }
-        return null;
-    }else{
-        return user;
+        user = userData;
+        console.log(userData);
+        return userData;
     }
+    return null;
+    
 }
 export async function signUpUser(user){
     console.log("SIGN UP CALLED", user);
@@ -127,11 +125,7 @@ export async function deleteBoardFromDB(id){
 export async function getBoards(userId){
     const supabase = await createClient();
     let {data:boards,error} = await supabase.from('board').select('*').eq('user_id',userId);
-    if(error){
-        console.log(error)
-    }
-    console.log(boards);
-    return boards;
+    return {boards,error};
 }
 
 export async function getBoard(boardId){
