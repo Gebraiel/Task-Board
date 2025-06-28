@@ -34,7 +34,7 @@ export default function SignupForm() {
         const {error}=await signUp(data)
         if(error){
             console.error(error)
-            toast.error(error.message)
+            toast.error(error)
         }else{
             toast.success("User registered successfully",{autoClose: 1000,
             onClose: () => router.push("/auth/login"),});

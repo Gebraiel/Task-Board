@@ -70,7 +70,7 @@ export async function login(formData){
 }
 export async function signUp(formData){
     const {error} = await signUpUser(formData)
-    return {error};
+    return {error:error.message};
 }
 export async function signOut(){
     const {error}=signOutUser()
