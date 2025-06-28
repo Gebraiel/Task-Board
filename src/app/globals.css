@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme{
+  --color-inprogress: #E9A23B;
+  --color-completed:#32D657;
+  --color-cancelled:#DD524C;
+  --color-task-completed:#A0ECB1;
+  --color-task-cancelled:#F7D4D3;
+  --color-task-inprogress:#F5D565;
+  --color-task-todo:#E3E8EF;
+  --color-task-toadd:#F7D4D3;
+  --text-title: clamp(1.5625rem, 1.1561rem + 1.7341vw, 2.5rem);
+  --text-title--font-weight:400;
+  --text-description:clamp(0.75rem, 0.6416rem + 0.4624vw, 1rem);
+  --text-description--font-weight:300;
+  --text-task-title:clamp(1rem, 0.8916rem + 0.4624vw, 1.25rem);
+  --text-task-title--font-weight:600;
+  --text-task-button:1rem;
+  --text-task-button--font-weight:600;
+  --text-button-text:0.875rem;
+  --text-button-text--font-weight:500;
+  --text-input-label:0.75rem;
+  --text-input-label--font-weight:500;
+}
+
+button{
+  cursor: pointer;
+}
