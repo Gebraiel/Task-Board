@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import Error from "@/src/app/components/error/Error";
 import Loading from "../../loader";
 import TaskList from "../../components/TaskList";
-export async function generateMetadata({ params}, parent) {
+export async function generateMetadata({params}) {
   const { boardId } = await params;
  
   // fetch data
@@ -20,13 +20,13 @@ export default async function Board({params}) {
   const {boardId} = await params;
   const board = await getBoard(boardId);
   if(!board){
-    return <Error>This board isn't found</Error>
+    return <Error>This board is not found</Error>
 
   }
   console.log(board)
   const {name,description,user_id,id} = board;
   if(user_id != user.id){
-    return <Error>You aren't authorized to access this board</Error>
+    return <Error>You are not authorized to access this board</Error>
   }
   console.log(boardId);
 
