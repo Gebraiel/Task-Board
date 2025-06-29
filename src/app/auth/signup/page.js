@@ -1,7 +1,9 @@
 import React from 'react'
-import Image from 'next/image'
 import SignUpForm from '@/src/app/components/SignUpForm'
 
+export const metadata = {
+  title: "Signup - TaskStack",
+};
 export default function SignUp() {
   return (
     <div className='px-5 py-5'>

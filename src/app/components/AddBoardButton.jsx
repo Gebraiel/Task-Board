@@ -2,7 +2,6 @@
 import React, { useState } from 'react'
 import AddBoardForm from './AddBoardForm';
 import FormContainer from './FormContainer';
-import UserContextProvider from '../context/UserContext';
 
 export default function AddBoardButton() {
     const [active,setActive] = useState(false);
@@ -14,10 +13,8 @@ export default function AddBoardButton() {
             </button>
             {
                 active && 
-                <FormContainer >
-                    <UserContextProvider>
+                <FormContainer closeForm={()=>setActive(false)}>
                         <AddBoardForm closeForm={()=>setActive(false)}/>
-                    </UserContextProvider>
                 </FormContainer>
             }
         </>

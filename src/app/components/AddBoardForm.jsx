@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { addBoard } from "../actions";
-import { useUser } from "../context/UserContext";
 import Loader from "./Loader";
 import { toast } from "react-toastify";
+import { getFullUser } from "../services/client/users";
 export default function AddBoardForm({closeForm}) {
-    const {user} = useUser();
-    console.log(user);
+    const user = getFullUser();
 
     const {register,formState:{errors,isSubmitting},handleSubmit,reset}=useForm();
     const inputClasses ="w-full  p-2 placeholder:text-sm border border-[#00000033] disabled:bg-[#ccc] text-button  rounded-md outine-none focus:outline-[#3662E3] ";

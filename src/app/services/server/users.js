@@ -1,23 +1,18 @@
 import { createClient } from '@/utils/supabase/server';
-let user = null;
 export async function getFullUser(){
     
     const supabase =  await createClient();
     const { data } = await supabase.auth.getUser();
-    if(data.user){
-        const {id} = data.user;
-        let { data: userData, error } = await supabase
-            .from('users')
-            .select("*")
-            .eq('auth_id', id).single();
-        if(error){
-            console.log(error);
-        }
-        user = userData;
-        console.log(userData);
-        return userData;
+    const {id} = data.user;
+    let { data: userData, error } = await supabase
+        .from('users')
+        .select("*")
+        .eq('auth_id', id).single();
+    if(error){
+        console.log(error);
     }
-    return null;
+    return userData;
+
     
 }
 export async function signUpUser(user){
@@ -123,14 +118,17 @@ export async function deleteBoardFromDB(id){
 }
 
 export async function getBoards(userId){
+   
     const supabase = await createClient();
     let {data:boards,error} = await supabase.from('board').select('*').eq('user_id',userId);
+    setTimeout(()=>console.log("Wait"),5000)
     return {boards,error};
 }
 
 export async function getBoard(boardId){
     const supabase = await createClient();
     let {data:board,error} = await supabase.from('board').select('*').eq('id',boardId).single();
+    
     if(error){
         console.log(error)
     }

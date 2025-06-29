@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { deleteBoard, editBoard } from "../actions";
-import { useUser } from "../context/UserContext";
 import { toast } from "react-toastify";
 import Loader from "./Loader";
 import DeleteMessage from "./DeleteMessage";

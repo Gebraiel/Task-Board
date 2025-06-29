@@ -62,15 +62,12 @@ export async function login(formData){
         password:formData.password
     }
     const { error } = await supabase.auth.signInWithPassword(data)
-    if (error) {
-        console.log(error);
-        throw new Error(error.message);
-    }
     revalidatePath('/')
+    return error?.message;
 }
 export async function signUp(formData){
     const {error} = await signUpUser(formData)
-    return {error:error.message};
+    return error?.message;
 }
 export async function signOut(){
     const {error}=signOutUser()

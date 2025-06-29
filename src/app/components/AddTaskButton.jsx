@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react'
 import FormContainer from './FormContainer';
-import AddFormMemo from './AddForm';
+import AddForm from './AddForm';
 
 export default function AddTaskButton() {
     const [formActive,setFormActive] = useState(false);
@@ -16,7 +16,7 @@ export default function AddTaskButton() {
             {
                 formActive && 
                 <FormContainer closeForm={()=>setFormActive(false)}>
-                    <AddFormMemo closeForm={()=>setFormActive(false)}/>
+                    <AddForm closeForm={()=>setFormActive(false)}/>
                 </FormContainer>
             }
         </>

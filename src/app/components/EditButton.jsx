@@ -18,7 +18,7 @@ export default function EditButton({board}) {
             </button>
             {
                 active &&
-                <FormContainer >
+                <FormContainer closeForm={()=>setActive(false)}>
                         <EditBoardForm board={board} closeForm={()=>setActive(false)}/>
                 </FormContainer>
             }

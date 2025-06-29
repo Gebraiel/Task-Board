@@ -31,7 +31,7 @@ export default function SignupForm() {
     const onSubmit = async (data)=>{
         console.log(data);
         
-        const {error}=await signUp(data)
+        const error =await signUp(data)
         if(error){
             console.error(error)
             toast.error(error)

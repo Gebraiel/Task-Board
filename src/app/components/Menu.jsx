@@ -21,9 +21,9 @@ export default function Menu() {
   }
   if(!path.includes('auth'))
     return (
-        <ul className='flex gap-5'>
+        <ul className='flex gap-2 sm:gap-5'>
             <li><Link href='/'>My Boards</Link></li>
-            <li><button href='/login' onClick={logout}>Logout</button></li>
+            <li><button onClick={logout}>Logout</button></li>
         </ul>
     )
     return null;
