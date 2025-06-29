@@ -34,7 +34,11 @@ export default function LoginForm() {
     return (
         <form className='space-y-4' onSubmit={handleSubmit(onSubmit)} >
             <InputContainer label="Email" inputType="text" id="email" error={errors.email?.message} register={()=>register("email",{required:"This field is required"})} disabled={isSubmitting}/>
-            <InputContainer label="Password" inputType="password" id="password" error={errors.password?.message} register={()=>register("password",{required:"This field is required"})} disabled={isSubmitting} />
+            <InputContainer label="Password" inputType="password" id="password" error={errors.password?.message} register={()=>register("password",{required:"This field is required",validate:(password)=>
+            {
+                const isValid = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>_\-\\/\[\];'`~+=]).{8,}$/.test(password)
+                return isValid
+            }})} disabled={isSubmitting} />
             
             <div className='flex justify-between items-center gap-5 '>
                 <button disabled={isSubmitting} className="bg-[#3662E3] disabled:bg-[#ccc] flex items-center gap-2  px-5 py-3 rounded-3xl text-white">
