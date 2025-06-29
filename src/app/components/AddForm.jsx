@@ -23,12 +23,14 @@ export default function AddForm({closeForm}) {
     if (!data.status) {
       status = "TODO";
     }
-    try{
-        const fullData = { ...data, board_id: boardId, status: status };
-        await addTask(fullData);
-        toast.success("Task Added Successfuly")
-        closeForm();
-    }catch(e){
+    const fullData = { ...data, board_id: boardId, status: status };
+    const error=await addTask(fullData);
+    if(!error)
+    {
+      toast.success("Task Added Successfuly")
+      closeForm();
+    }
+    else{
         console.error("Error: ",e);
         toast.error(e.message)
     }

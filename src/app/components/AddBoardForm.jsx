@@ -11,17 +11,17 @@ export default function AddBoardForm({closeForm}) {
     const inputClasses ="w-full  p-2 placeholder:text-sm border border-[#00000033] disabled:bg-[#ccc] text-button  rounded-md outine-none focus:outline-[#3662E3] ";
     const onSubmit= async (data)=>{
         console.log(data);
-        
         const {id} = user;
         console.log(id);
         const fullData = {...data,"user_id":id};
-        try{
-            await addBoard(fullData);
+        const error = await addBoard(fullData);
+        if(!error){
             reset();
             toast.success("Board Added Successfuly")
             closeForm();
-        }catch(e){
-            toast.error(e.message)
+        }
+        else{
+            toast.error(error)
         }
 
     }

@@ -18,34 +18,31 @@ export default function EditForm({task,closeForm}) {
     const [deleteStatus,setDeleteStatus]=useState(false);
     console.log("Edit Form re-rendered");    
     const onSubmit= async (data)=>{
-            console.log(data);
-            let status = data.status
-            if(!data.status){
-                status = "TODO";
-            }
-            const fullData = {...data,"board_id":boardId,"status":status};
-            
-            try{
-                await editTask(fullData);
-                toast.success("Task Edited Successfuly");
-                closeForm();
-
-            }catch(e){
-                console.error("Error: ",e);
-                toast.error(e.message)
-            }
+        console.log(data);
+        let status = data.status
+        if(!data.status){
+            status = "TODO";
         }
+        const fullData = {...data,"board_id":boardId,"status":status};
+        const error = await editTask(fullData);
+        if(!error){
+            toast.success("Task Edited Successfuly");
+            closeForm();
+
+        }else{
+            console.error("Error: ",error);
+            toast.error(error)
+        }
+    }
     async function deleteTaskFn(){
         setIsDelting(true)
         setDeleteStatus(false);
-        
-        try{
-            await deleteTask(task.id,boardId);
+        const error = await deleteTask(task.id,boardId);
+        if(!error){
             toast.success("Task Deleted Successfuly");
-
-        }catch(e){
-            console.error("Error: ",e);
-            toast.error(e.message)
+        }else{
+            console.error("Error: ",error);
+            toast.error(error)
         }
         setIsDelting(false);
     }

@@ -9,51 +9,49 @@ export async function addTask(formData){
     console.log("Data Came From Form",formData);
     const {board_id}=formData;
     const {error} = await submitTask(formData);
-    if(error){
-        throw new Error(error.message);
-    }
+    
     revalidatePath(`/board/${board_id}`)
+    return error?.message;
+
 }
 export async function editTask(formData){
     console.log("Data Came From Form",formData);
     const {board_Id}=formData
     const {error} = await updateTask(formData);
-    if(error){
-        throw new Error(error.message)
-    }
+ 
     revalidatePath(`/board/${board_Id}`)
+    return error?.message;
+
 
 }
 export async function deleteTask(id,boardId){
     const {error} = deleteTaskFromDB(id);
-    if(error){
-        throw new Error(error.message)
-    }
     revalidatePath(`/board/${boardId}`)
+    return error?.message;
+
 }
 export async function addBoard(data){
     const {error} = await addNewBoard(data);
-    if(error){
-        throw new Error(error.message)
-    }
     revalidatePath(`/`)
+    return error?.message;
+
 }
 export async function editBoard(formData){
     console.log("Data Came From Form",formData);
-    const {board_Id}=formData
+    const {id}=formData;
+    console.log("Board id:",id)
     const {error} = await updateBoard(formData);
-    if(error){
-        throw new Error(error.message)
-    }
-    revalidatePath(`/board/${board_Id}`)
+    revalidatePath(`/board/${id}`)
     revalidatePath('/')
+    return error?.message;
+
 }
 export async function deleteBoard(id){
     const{error} = deleteBoardFromDB(id);
-    if(error){
-        throw new Error(error.message);
-    }
+    
     revalidatePath(`/`)
+    return error?.message;
+
 }
 export async function login(formData){
     const supabase = await createClient()

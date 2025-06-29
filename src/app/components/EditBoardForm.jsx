@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import Loader from "./Loader";
 import DeleteMessage from "./DeleteMessage";
 import { useRouter } from "next/navigation";
+import InputContainer from "./InputContainer";
 export default function EditBoardForm({board,closeForm}) {
     const router = useRouter();
     const [isDeleting,setIsDelting] = useState(false);
@@ -16,22 +17,25 @@ export default function EditBoardForm({board,closeForm}) {
     const onSubmit= async (data)=>{
         console.log(data);
         const fullData = {...data,"id":board.id};
-        try{
-            await editBoard(fullData);
+        const error = await editBoard(fullData);
+        if(!error){
             toast.success('Board Edited Successfuly');
             closeForm()
-        }catch(e){
-            toast.error(e.message);
+        }else{
+            toast.error(error);
         }
     }
     async function deleteTaskFn(){
         setIsDelting(true)
-        try{
-            await deleteBoard(board.id);
+        
+        const error = await deleteBoard(board.id);
+        if(!error)
+        {
             toast.success('Board Deleted Successfuly')
             router.push("/")
-        }catch(e){
-            toast.error(e.message)
+        }
+        else{
+            toast.error(error)
         }
         setDeleteStatus(false);
         setIsDelting(false);
@@ -41,33 +45,10 @@ export default function EditBoardForm({board,closeForm}) {
         <>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
-                <label htmlFor="title" className="text-[#97A3B6] text-input-label">
-                    Board Name
-                </label>
-                <input
-                    placeholder="Enter Task Title"
-                    {...register('name',{required:"This field is required"})}
-                    className={inputClasses}
-                />
-                {
-                    errors.title &&
-                    <p className="text-red-500 italic text-sm">                    
-                        This field is required
-                    </p> 
-                }
+                <InputContainer label="Board name" inputType="text" id="name" error={errors.name?.message} register={()=>register('name',{required:"This field is required"})} disabled={isSubmitting}/>
             </div>
             <div>
-                <label
-                    htmlFor="description"
-                    className="text-[#97A3B6] text-input-label"
-                >
-                    Description
-                </label>
-                <textarea
-                    placeholder="Enter Task Description"
-                    {...register('description')}
-                    className={`${inputClasses} resize-none h-28`}
-                />
+                <InputContainer label="description" inputType="textarea" id="description" error={errors.description?.message} register={()=>register('description')} disabled={isSubmitting}/>
             </div>
 
 
