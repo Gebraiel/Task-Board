@@ -1,15 +1,13 @@
-import { getBoard, getFullUser } from "../../services/server/users";
-import EditButton from "../../components/board/EditButton";
+import { getBoard, getFullUser } from "@/src/app/services/server/users";
+import EditButton from "@/src/app/components/task/EditButton";
 import { Suspense } from "react";
 import Error from "@/src/app/components/error/Error";
-import Loading from "../../loader";
-import TaskList from "../../components/task/TaskList";
+import Loading from "@/src/app/loader";
+import TaskList from "@/src/app/components/task/TaskList";
 export async function generateMetadata({params}) {
   const { boardId } = await params;
  
-  // fetch data
   const board = await getBoard(boardId);
- 
   return {
     title: `${board.name} - TaskStack`,
     description:board.description

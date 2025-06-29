@@ -9,7 +9,6 @@ export default function AddBoardForm({closeForm}) {
     const user = getFullUser();
 
     const {register,formState:{errors,isSubmitting},handleSubmit,reset}=useForm();
-    const inputClasses ="w-full  p-2 placeholder:text-sm border border-[#00000033] disabled:bg-[#ccc] text-button  rounded-md outine-none focus:outline-[#3662E3] ";
     const onSubmit= async (data)=>{
         console.log(data);
         const {id} = user;

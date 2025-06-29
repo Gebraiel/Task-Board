@@ -1,13 +1,9 @@
 import React from 'react'
 import Task from './Task'
-import AddTaskButton from './AddTaskButton'
-import { getBoardTasks, getUserTasks } from '@/src/app/services/server/users';
-import { createClient } from '@/utils/supabase/server'
+import AddTaskButton from '@/src/app/components/task/AddTaskButton'
+import { getBoardTasks } from '@/src/app/services/server/users';
 
 export default async function TaskList({boardId}) {
-  const supabase= await createClient();
-  const { data:{user}, error } = await supabase.auth.getUser();
-
   const tasks = await getBoardTasks(boardId);
   console.log(tasks);
   return (

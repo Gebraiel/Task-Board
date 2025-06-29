@@ -15,7 +15,9 @@ export default function RootLayout({ children }) {
       >
         <Header /> 
         <main className="container flex justify-center items-center m-auto ">
-            {children}
+            <Suspense fallback={<Loading/>}>
+              {children}
+            </Suspense>
         </main>
         <ToastContainer position="top-center"/>
       </body>

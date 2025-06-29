@@ -5,7 +5,8 @@ export const metadata = {
   title: "Taskstack",
   description:"A task management web app where users can create boards and manage tasks with secure login."
 };
-export default  function Home() {
+export default function Home() {
+
   return (
    <div className="p-6">
     <h1 className="flex gap-2 items-center text-title mb-5">
