@@ -1,6 +1,7 @@
-import { updateSession } from '@/utils/supabase/middleware'
+import { updateSession } from '@/utils/supabase/middelware'
 
 export async function middleware(request) {
+  console.log("Middleware is running");
   return await updateSession(request)
 }
 export const config = {
