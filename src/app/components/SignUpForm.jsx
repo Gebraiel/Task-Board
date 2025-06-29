@@ -1,10 +1,10 @@
 "use client";
 import React, { useState } from 'react'
-import { signUp } from '../actions'
-import InputContainer from './InputContainer'
+import { signUp } from '@/src/app/actions'
+import InputContainer from '@/src/app/components/InputContainer'
 import { useForm } from 'react-hook-form';
-import Loader from './Loader';
-import CheckList from './CheckList';
+import Loader from '@/src/app/components/Loader';
+import CheckList from '@/src/app/components/CheckList';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';

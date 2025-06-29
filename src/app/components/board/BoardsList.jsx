@@ -1,7 +1,7 @@
 import React from 'react'
 import { getBoards, getFullUser } from "@/src/app/services/server/users";
-import Board from '@/src/app/components/Board';
-import AddBoardButton from '@/src/app/components/AddBoardButton';
+import Board from '@/src/app/components/board/Board';
+import AddBoardButton from '@/src/app/components/board/AddBoardButton';
 export default async function BoardsList() {
    const fullUser = await getFullUser();
     console.log(fullUser)

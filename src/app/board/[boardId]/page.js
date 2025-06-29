@@ -1,9 +1,9 @@
 import { getBoard, getFullUser } from "../../services/server/users";
-import EditButton from "../../components/EditButton";
+import EditButton from "../../components/board/EditButton";
 import { Suspense } from "react";
 import Error from "@/src/app/components/error/Error";
 import Loading from "../../loader";
-import TaskList from "../../components/TaskList";
+import TaskList from "../../components/task/TaskList";
 export async function generateMetadata({params}) {
   const { boardId } = await params;
  

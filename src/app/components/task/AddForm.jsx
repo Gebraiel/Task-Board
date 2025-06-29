@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { addTask } from "../actions";
-import Loader from "./Loader";
+import { addTask } from "../../actions";
+import Loader from "../Loader";
 import { toast } from "react-toastify";
-import InputContainer from "./InputContainer";
+import InputContainer from "../InputContainer";
 export default function AddForm({closeForm}) {
   const { boardId } = useParams();
   

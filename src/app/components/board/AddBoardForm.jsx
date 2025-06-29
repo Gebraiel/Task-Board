@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { addBoard } from "../actions";
-import Loader from "./Loader";
+import { addBoard } from "@/src/app/actions";
+import Loader from "@/src/app/components/Loader";
 import { toast } from "react-toastify";
-import { getFullUser } from "../services/client/users";
+import { getFullUser } from "@/src/app/services/client/users";
+import InputContainer from "../InputContainer";
 export default function AddBoardForm({closeForm}) {
     const user = getFullUser();
 
@@ -29,37 +30,11 @@ export default function AddBoardForm({closeForm}) {
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div>
-                <label htmlFor="name" className="text-[#97A3B6] text-input-label">
-                    Board Name
-                </label>
-                <input
-                    disabled={isSubmitting}
-                    placeholder="Enter Task Title"
-                    type="text"
-                    {...register('name',{required:true})}
-                    className={inputClasses}
-                />
-                {
-                    errors.title &&
-                    <p className="text-red-500 italic text-sm">                    
-                        This field is required
-                    </p> 
-                }
+                <InputContainer label="Board Name" inputType="text" id="name" register={()=>register("name",{required:"This field is required"})} error={errors.name?.message} disabled={isSubmitting}/>
+                
             </div>
             <div>
-                <label
-                    htmlFor="description"
-                    className="text-[#97A3B6] text-input-label"
-                >
-                    Description
-                </label>
-                <textarea
-                    disabled={isSubmitting}
-                    placeholder="Enter Task Description"
-                    {...register('description')}
-
-                    className={`${inputClasses} resize-none h-28`}
-                />
+                <InputContainer label="Description" inputType="textarea" id="description" register={()=>register("description")} disabled={isSubmitting}/>
             </div>
 
             <button disabled={isSubmitting} className="bg-[#3662E3] disabled:bg-[#ccc] flex items-center gap-2 ml-auto mt-20 px-5 py-3 rounded-3xl text-white">

@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react'
-import FormContainer from './FormContainer';
+import FormContainer from '../FormContainer';
 import EditBoardForm from './EditBoardForm';
 
 export default function EditButton({board}) {

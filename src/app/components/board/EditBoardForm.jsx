@@ -1,12 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { deleteBoard, editBoard } from "../actions";
+import { deleteBoard, editBoard } from "../../actions";
 import { toast } from "react-toastify";
-import Loader from "./Loader";
-import DeleteMessage from "./DeleteMessage";
+import Loader from "../Loader";
+import DeleteMessage from "../DeleteMessage";
 import { useRouter } from "next/navigation";
-import InputContainer from "./InputContainer";
+import InputContainer from "../InputContainer";
 export default function EditBoardForm({board,closeForm}) {
     const router = useRouter();
     const [isDeleting,setIsDelting] = useState(false);

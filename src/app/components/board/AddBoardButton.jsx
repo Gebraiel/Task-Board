@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react'
-import AddBoardForm from './AddBoardForm';
-import FormContainer from './FormContainer';
+import AddBoardForm from '@/src/app/components/board/AddBoardForm';
+import FormContainer from '@/src/app/components/FormContainer';
 
 export default function AddBoardButton() {
     const [active,setActive] = useState(false);

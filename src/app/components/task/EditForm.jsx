@@ -2,11 +2,11 @@
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { deleteTask, editTask } from "../actions";
-import Loader from "./Loader";
+import { deleteTask, editTask } from "../../actions";
+import Loader from "../Loader";
 import { toast } from "react-toastify";
-import DeleteMessage from "./DeleteMessage";
-import InputContainer from "./InputContainer";
+import DeleteMessage from "../DeleteMessage";
+import InputContainer from "../InputContainer";
 export default function EditForm({task,closeForm}) {
     const {boardId}=useParams();
 
