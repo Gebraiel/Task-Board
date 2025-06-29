@@ -52,7 +52,7 @@ export default function SignupForm() {
             } ,required: "This field is required" })} error={errors.email?.message} disabled={isSubmitting}/>
             <InputContainer label="Password*" inputType="password" id="password"register={()=>register("password", { required: "This field is required",validate:(password)=>{
                 const isValid = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>_\-\\/\[\];'`~+=]).{8,}$/.test(password)
-                return isValid || "This email isn't valid"
+                return isValid 
             }})} error={errors.password?.message} disabled={isSubmitting}/>
             <InputContainer label="Confirm Password*" inputType="password" id="password-confirm" register={()=>register("passwordConfirm", { required: "This field is required" ,validate:(passwordConfirm,{password})=>{
                 return password == passwordConfirm 

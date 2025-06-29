@@ -36,8 +36,8 @@ export default function LoginForm() {
             <InputContainer label="Email" inputType="text" id="email" error={errors.email?.message} register={()=>register("email",{required:"This field is required"})} disabled={isSubmitting}/>
             <InputContainer label="Password" inputType="password" id="password" error={errors.password?.message} register={()=>register("password",{required:"This field is required",validate:(password)=>
             {
-                const isValid = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>_\-\\/\[\];'`~+=]).{8,}$/.test(password)
-                return isValid | "This email isn't valid"
+                const isValid = (/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g).test(email);
+                return  isValid || "Email isn't valid";  
             }})} disabled={isSubmitting} />
             
             <div className='flex justify-between items-center gap-5 '>
