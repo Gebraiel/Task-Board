@@ -8,7 +8,7 @@ export const metadata = {
 export default function Home() {
 
   return (
-   <div className="p-6">
+   <div className="p-6 max-w-[1000px] w-full">
     <h1 className="flex gap-2 items-center text-title mb-5">
 
       <p>Your Boards</p>
