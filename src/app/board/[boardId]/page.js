@@ -8,9 +8,14 @@ export async function generateMetadata({params}) {
   const { boardId } = await params;
  
   const board = await getBoard(boardId);
+  if(board)
+    return {
+      title: `${board.name} - TaskStack`,
+      description:board.description
+    }
   return {
-    title: `${board.name} - TaskStack`,
-    description:board.description
+    title:"Board - Taskstack",
+    
   }
 }
 export default async function Board({params}) {
@@ -22,7 +27,7 @@ export default async function Board({params}) {
 
   }
   console.log(board)
-  const {name,description,user_id} = board;
+  const {name,description,user_id,id} = board;
   if(user_id != user.id){
     return <Error>You are not authorized to access this board</Error>
   }
