@@ -27,7 +27,8 @@ export default function EditBoardForm({board,closeForm}) {
     }
     async function deleteTaskFn(){
         setIsDelting(true)
-        
+        setDeleteStatus(false);
+
         const error = await deleteBoard(board.id);
         if(!error)
         {
@@ -37,7 +38,6 @@ export default function EditBoardForm({board,closeForm}) {
         else{
             toast.error(error)
         }
-        setDeleteStatus(false);
         setIsDelting(false);
     }
     const inputClasses ="w-full p-2 placeholder:text-sm border border-[#00000033] text-button  rounded-md outine-none focus:outline-[#3662E3] ";

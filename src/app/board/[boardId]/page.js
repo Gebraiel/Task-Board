@@ -22,7 +22,7 @@ export default async function Board({params}) {
 
   }
   console.log(board)
-  const {name,description,user_id,id} = board;
+  const {name,description,user_id} = board;
   if(user_id != user.id){
     return <Error>You are not authorized to access this board</Error>
   }
