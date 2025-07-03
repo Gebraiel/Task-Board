@@ -6,12 +6,12 @@ import { toast } from "react-toastify";
 import { getFullUser } from "@/src/app/services/client/users";
 import InputContainer from "../InputContainer";
 export default function AddBoardForm({closeForm}) {
-    const user = getFullUser();
-
     const {register,formState:{errors,isSubmitting},handleSubmit,reset}=useForm();
     const onSubmit= async (data)=>{
+        const user = await getFullUser();
         console.log(data);
         const {id} = user;
+        console.log(user);
         console.log(id);
         const fullData = {...data,"user_id":id};
         const error = await addBoard(fullData);
