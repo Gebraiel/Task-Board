@@ -2,21 +2,11 @@ import { getBoard, getFullUser } from "@/src/app/services/server/users";
 import EditButton from "@/src/app/components/task/EditButton";
 import { Suspense } from "react";
 import Error from "@/src/app/components/error/Error";
-import Loading from "@/src/app/loader";
 import TaskList from "@/src/app/components/task/TaskList";
-export async function generateMetadata({params}) {
-  const { boardId } = await params;
- 
-  const board = await getBoard(boardId);
-  if(board)
-    return {
-      title: `${board.name} - TaskStack`,
-      description:board.description
-    }
-  return {
-    title:"Board - Taskstack",
-    
-  }
+import Loader from "../../components/Loader";
+
+export const metadata = {
+  title:"Board-TaskStack",
 }
 export default async function Board({params}) {
   const user = await getFullUser();
@@ -24,7 +14,6 @@ export default async function Board({params}) {
   const board = await getBoard(boardId);
   if(!board){
     return <Error>This board is not found</Error>
-
   }
   console.log(board)
   const {name,description,user_id,id} = board;
@@ -47,7 +36,7 @@ export default async function Board({params}) {
           </div>
           <EditButton board={board}/>
         </div>
-        <Suspense fallback={<Loading/>}>
+        <Suspense fallback={<Loader fill="black"/>}>
           <TaskList boardId={boardId}/>
         </Suspense>
       </div>
